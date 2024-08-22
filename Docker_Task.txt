@@ -1,0 +1,649 @@
+[ec2-user@ip-172-31-6-132 ~]$ sudo yum update -y
+Last metadata expiration check: 3:44:10 ago on Thu Aug 22 10:04:41 2024.
+==================================================================================================================================================================
+WARNING:
+  A newer release of "Amazon Linux" is available.
+
+  Available Versions:
+
+  Version 2023.5.20240730:
+    Run the following command to upgrade to 2023.5.20240730:
+
+      dnf upgrade --releasever=2023.5.20240730
+
+    Release notes:
+     https://docs.aws.amazon.com/linux/al2023/release-notes/relnotes-2023.5.20240730.html
+
+  Version 2023.5.20240805:
+    Run the following command to upgrade to 2023.5.20240805:
+
+      dnf upgrade --releasever=2023.5.20240805
+
+    Release notes:
+     https://docs.aws.amazon.com/linux/al2023/release-notes/relnotes-2023.5.20240805.html
+
+  Version 2023.5.20240819:
+    Run the following command to upgrade to 2023.5.20240819:
+
+      dnf upgrade --releasever=2023.5.20240819
+
+    Release notes:
+     https://docs.aws.amazon.com/linux/al2023/release-notes/relnotes-2023.5.20240819.html
+
+==================================================================================================================================================================
+Dependencies resolved.
+Nothing to do.
+Complete!
+[ec2-user@ip-172-31-6-132 ~]$ sudo amazon-linux-extras install docker -y
+sudo: amazon-linux-extras: command not found
+[ec2-user@ip-172-31-6-132 ~]$ yum amazon-linux-extras install docker -y
+No such command: amazon-linux-extras. Please use /usr/bin/yum --help
+It could be a YUM plugin command, try: "yum install 'dnf-command(amazon-linux-extras)'"
+[ec2-user@ip-172-31-6-132 ~]$ history | grep install
+  138  install cron
+  139  install -cron
+  140  install -help
+  141  install --help
+  142  sudo yum install cronie -y
+  221  sudo yum install cronie -y
+  272  sudo yum install java-1.8.0-openjdk
+  275  sudo yum install java-1.8.0-openjdk-devel
+  276  sudo yum install java-11-openjdk
+  277  sudo yum install -y https://d1uj6qtbmh3dt5.cloudfront.net/java/amazon-corretto-17-x86_64-linux-jdk.rpm
+  278  sudo yum localinstall amazon-corretto-17-x86_64-linux-jdk.rpm
+  280  sudo yum localinstall amazon-corretto-17-x86_64-linux-jdk.rpm
+  336  sudo amazon-linux-extras install docker -y
+  338  sudo yum install docker -y
+  429  sudo amazon-linux-extras install docker -y
+  430  yum amazon-linux-extras install docker -y
+  431  history | grep install
+[ec2-user@ip-172-31-6-132 ~]$ sudo amazon-linux-extras install docker -y
+sudo: amazon-linux-extras: command not found
+[ec2-user@ip-172-31-6-132 ~]$ sudo amazon-linux-extras install docker -y
+^C
+[ec2-user@ip-172-31-6-132 ~]$ sudo yum install docker -y
+Last metadata expiration check: 3:45:34 ago on Thu Aug 22 10:04:41 2024.
+Package docker-25.0.3-1.amzn2023.0.2.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[ec2-user@ip-172-31-6-132 ~]$ docker --version
+Docker version 25.0.3, build 4debf41
+[ec2-user@ip-172-31-6-132 ~]$ docker images
+REPOSITORY                          TAG       IMAGE ID       CREATED         SIZE
+revathitadela1/hello-world-docker   latest    9517fcc5311a   24 hours ago    13.1MB
+tadelarevathi1/hello-world          latest    9517fcc5311a   24 hours ago    13.1MB
+my-app-node                         latest    d968d4e8be31   2 days ago      912MB
+tadelarevathi1/my-app-node          latest    d968d4e8be31   2 days ago      912MB
+hello-world                         latest    d2c94e258dcb   15 months ago   13.3kB
+[ec2-user@ip-172-31-6-132 ~]$ docker pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+e4fff0779e6d: Pull complete 
+2a0cb278fd9f: Pull complete 
+7045d6c32ae2: Pull complete 
+03de31afb035: Pull complete 
+0f17be8dcff2: Pull complete 
+14b7e5e8f394: Pull complete 
+23fa5a7b99a6: Pull complete 
+Digest: sha256:447a8665cc1dab95b1ca778e162215839ccbb9189104c79d7ec3a81e14577add
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+[ec2-user@ip-172-31-6-132 ~]$ docker images
+REPOSITORY                          TAG       IMAGE ID       CREATED         SIZE
+revathitadela1/hello-world-docker   latest    9517fcc5311a   24 hours ago    13.1MB
+tadelarevathi1/hello-world          latest    9517fcc5311a   24 hours ago    13.1MB
+my-app-node                         latest    d968d4e8be31   2 days ago      912MB
+tadelarevathi1/my-app-node          latest    d968d4e8be31   2 days ago      912MB
+nginx                               latest    5ef79149e0ec   7 days ago      188MB
+hello-world                         latest    d2c94e258dcb   15 months ago   13.3kB
+[ec2-user@ip-172-31-6-132 ~]$ docker rmi 5ef79149e0ec
+Untagged: nginx:latest
+Untagged: nginx@sha256:447a8665cc1dab95b1ca778e162215839ccbb9189104c79d7ec3a81e14577add
+Deleted: sha256:5ef79149e0ec84a7a9f9284c3f91aa3c20608f8391f5445eabe92ef07dbda03c
+Deleted: sha256:aa557aaf0b93b5b9af247beb198be89632444af2d52b37f2b67bdf2227194625
+Deleted: sha256:85dee7d6fa4b70eaa6b43b5dede5255b6794fac35d2aa6a80f8590dad223c1a6
+Deleted: sha256:9996f8429bfc2f1e10f561e17bdc0c66eb82e30088725fbdc634a774933ba066
+Deleted: sha256:d861b1c34411369feaaaf4921018baa607e89f1c393b8ed950f676dd3349b9ff
+Deleted: sha256:01b9716819d1d6863f886e1adcd8bb2bf936dcacb16e1750e873bfd8e1667014
+Deleted: sha256:8d8c7099ecd8343e6700c1d348211ab159c0eda2a9d318c5cf600a8eb2588f5e
+Deleted: sha256:9853575bc4f955c5892dd64187538a6cd02dba6968eba9201854876a7a257034
+[ec2-user@ip-172-31-6-132 ~]$ docker images
+REPOSITORY                          TAG       IMAGE ID       CREATED         SIZE
+revathitadela1/hello-world-docker   latest    9517fcc5311a   24 hours ago    13.1MB
+tadelarevathi1/hello-world          latest    9517fcc5311a   24 hours ago    13.1MB
+my-app-node                         latest    d968d4e8be31   2 days ago      912MB
+tadelarevathi1/my-app-node          latest    d968d4e8be31   2 days ago      912MB
+hello-world                         latest    d2c94e258dcb   15 months ago   13.3kB
+[ec2-user@ip-172-31-6-132 ~]$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED      STATUS                  PORTS     NAMES
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago   Exited (1) 2 days ago             my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago   Exited (0) 2 days ago             exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago   Exited (0) 2 days ago             crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker run -d -p 80:80 nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+e4fff0779e6d: Pull complete 
+2a0cb278fd9f: Pull complete 
+7045d6c32ae2: Pull complete 
+03de31afb035: Pull complete 
+0f17be8dcff2: Pull complete 
+14b7e5e8f394: Pull complete 
+23fa5a7b99a6: Pull complete 
+Digest: sha256:447a8665cc1dab95b1ca778e162215839ccbb9189104c79d7ec3a81e14577add
+Status: Downloaded newer image for nginx:latest
+d8d33936fbb8faaf7324a3c49e3e35a2f34fa4da60da095774e89d1fa851f759
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                  PORTS                               NAMES
+d8d33936fbb8   nginx         "/docker-entrypoint.…"   16 seconds ago   Up 15 seconds           0.0.0.0:80->80/tcp, :::80->80/tcp   stoic_wozniak
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago       Exited (1) 2 days ago                                       my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                                       exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                                       crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker stop d8d33936fbb8
+d8d33936fbb8
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                     PORTS     NAMES
+d8d33936fbb8   nginx         "/docker-entrypoint.…"   43 seconds ago   Exited (0) 3 seconds ago             stoic_wozniak
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago       Exited (1) 2 days ago                my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                     PORTS     NAMES
+d8d33936fbb8   nginx         "/docker-entrypoint.…"   49 seconds ago   Exited (0) 9 seconds ago             stoic_wozniak
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago       Exited (1) 2 days ago                my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                      PORTS     NAMES
+d8d33936fbb8   nginx         "/docker-entrypoint.…"   53 seconds ago   Exited (0) 13 seconds ago             stoic_wozniak
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago       Exited (1) 2 days ago                 my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                 exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                 crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED              STATUS                      PORTS     NAMES
+d8d33936fbb8   nginx         "/docker-entrypoint.…"   About a minute ago   Exited (0) 20 seconds ago             stoic_wozniak
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago           Exited (1) 2 days ago                 my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago           Exited (0) 2 days ago                 exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago           Exited (0) 2 days ago                 crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker rm <container_id>
+-bash: syntax error near unexpected token `newline'
+[ec2-user@ip-172-31-6-132 ~]$ docker rm d8d33936fbb8
+d8d33936fbb8
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED      STATUS                  PORTS     NAMES
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago   Exited (1) 2 days ago             my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago   Exited (0) 2 days ago             exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago   Exited (0) 2 days ago             crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker volume create my_volume
+my_volume
+[ec2-user@ip-172-31-6-132 ~]$ docker volume ls
+DRIVER    VOLUME NAME
+local     my_volume
+[ec2-user@ip-172-31-6-132 ~]$ docker volume inspect my_volume
+[
+    {
+        "CreatedAt": "2024-08-22T13:54:17Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/my_volume/_data",
+        "Name": "my_volume",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+[ec2-user@ip-172-31-6-132 ~]$ docker volume rm my_volume
+my_volume
+[ec2-user@ip-172-31-6-132 ~]$ docker volume ls
+DRIVER    VOLUME NAME
+[ec2-user@ip-172-31-6-132 ~]$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+b6adad0409ae   bridge    bridge    local
+873bb460b1fa   host      host      local
+0e70fa0f40a5   none      null      local
+[ec2-user@ip-172-31-6-132 ~]$ docker network create my_network
+756f526f87157c8cd72a34725b15672f4b9ebe55c6f41392c1014bffb76eb80d
+[ec2-user@ip-172-31-6-132 ~]$ docker network inspect my_network
+[
+    {
+        "Name": "my_network",
+        "Id": "756f526f87157c8cd72a34725b15672f4b9ebe55c6f41392c1014bffb76eb80d",
+        "Created": "2024-08-22T13:55:28.354943479Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+[ec2-user@ip-172-31-6-132 ~]$ docker network ls
+NETWORK ID     NAME         DRIVER    SCOPE
+b6adad0409ae   bridge       bridge    local
+873bb460b1fa   host         host      local
+756f526f8715   my_network   bridge    local
+0e70fa0f40a5   none         null      local
+[ec2-user@ip-172-31-6-132 ~]$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED      STATUS                  PORTS     NAMES
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago   Exited (1) 2 days ago             my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago   Exited (0) 2 days ago             exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago   Exited (0) 2 days ago             crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker network connect my_network 328b99fc70e4
+[ec2-user@ip-172-31-6-132 ~]$ docker network ls
+NETWORK ID     NAME         DRIVER    SCOPE
+b6adad0409ae   bridge       bridge    local
+873bb460b1fa   host         host      local
+756f526f8715   my_network   bridge    local
+0e70fa0f40a5   none         null      local
+[ec2-user@ip-172-31-6-132 ~]$ docker network ls
+NETWORK ID     NAME         DRIVER    SCOPE
+b6adad0409ae   bridge       bridge    local
+873bb460b1fa   host         host      local
+756f526f8715   my_network   bridge    local
+0e70fa0f40a5   none         null      local
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED      STATUS                  PORTS     NAMES
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago   Exited (1) 2 days ago             my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago   Exited (0) 2 days ago             exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago   Exited (0) 2 days ago             crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker run -d -p 80:80 nginx
+6b457ccb0b7293fe08763a28d8a39b59b4180da1ac64a6365b9335ad924ff712
+[ec2-user@ip-172-31-6-132 ~]$ docker -ps 0a
+unknown shorthand flag: 'p' in -ps
+See 'docker --help'.
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Log in to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx (Docker Inc., v0.0.0+unknown)
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Global Options:
+      --config string      Location of client config files (default "/home/ec2-user/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info", "warn", "error", "fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/home/ec2-user/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/home/ec2-user/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/home/ec2-user/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+
+[ec2-user@ip-172-31-6-132 ~]$ docker -ps -a
+unknown shorthand flag: 'p' in -ps
+See 'docker --help'.
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Log in to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx (Docker Inc., v0.0.0+unknown)
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Global Options:
+      --config string      Location of client config files (default "/home/ec2-user/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info", "warn", "error", "fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/home/ec2-user/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/home/ec2-user/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/home/ec2-user/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                  PORTS                               NAMES
+6b457ccb0b72   nginx         "/docker-entrypoint.…"   30 seconds ago   Up 28 seconds           0.0.0.0:80->80/tcp, :::80->80/tcp   dazzling_snyder
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago       Exited (1) 2 days ago                                       my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                                       exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                                       crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker network connect my_network docker run -d -p 80:80 nginx
+^C
+[ec2-user@ip-172-31-6-132 ~]$ docker network connect my_network 6b457ccb0b72
+[ec2-user@ip-172-31-6-132 ~]$ docker -ps -a
+unknown shorthand flag: 'p' in -ps
+See 'docker --help'.
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Log in to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx (Docker Inc., v0.0.0+unknown)
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Global Options:
+      --config string      Location of client config files (default "/home/ec2-user/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info", "warn", "error", "fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/home/ec2-user/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/home/ec2-user/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/home/ec2-user/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED              STATUS                  PORTS                               NAMES
+6b457ccb0b72   nginx         "/docker-entrypoint.…"   About a minute ago   Up About a minute       0.0.0.0:80->80/tcp, :::80->80/tcp   dazzling_snyder
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago           Exited (1) 2 days ago                                       my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago           Exited (0) 2 days ago                                       exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago           Exited (0) 2 days ago                                       crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker network ps
+
+Usage:  docker network COMMAND
+
+Manage networks
+
+Commands:
+  connect     Connect a container to a network
+  create      Create a network
+  disconnect  Disconnect a container from a network
+  inspect     Display detailed information on one or more networks
+  ls          List networks
+  prune       Remove all unused networks
+  rm          Remove one or more networks
+
+Run 'docker network COMMAND --help' for more information on a command.
+[ec2-user@ip-172-31-6-132 ~]$ docker network ls
+NETWORK ID     NAME         DRIVER    SCOPE
+b6adad0409ae   bridge       bridge    local
+873bb460b1fa   host         host      local
+756f526f8715   my_network   bridge    local
+0e70fa0f40a5   none         null      local
+[ec2-user@ip-172-31-6-132 ~]$ docker network inspect my_network
+[
+    {
+        "Name": "my_network",
+        "Id": "756f526f87157c8cd72a34725b15672f4b9ebe55c6f41392c1014bffb76eb80d",
+        "Created": "2024-08-22T13:55:28.354943479Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "6b457ccb0b7293fe08763a28d8a39b59b4180da1ac64a6365b9335ad924ff712": {
+                "Name": "dazzling_snyder",
+                "EndpointID": "2b9a9b8f2e95b1a0fd3ebbc08048c3c65bf5540f568d2087ae570fa8297eb3a7",
+                "MacAddress": "02:42:ac:12:00:02",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+[ec2-user@ip-172-31-6-132 ~]$ docker network inspect my_network | grep 6b457ccb0b7293fe08763a28d8a39b59b4180da1ac64a6365b9335ad924ff712
+            "6b457ccb0b7293fe08763a28d8a39b59b4180da1ac64a6365b9335ad924ff712": {
+[ec2-user@ip-172-31-6-132 ~]$ docker run -d -p 80:80 nginx
+30d189b75058d170162653db6fd831058ad4e3bec47ec2302c7d062057f13cb0
+docker: Error response from daemon: driver failed programming external connectivity on endpoint sweet_davinci (bc1b811a60f9f9352ba8ad62d438df6a4f4075e455634b4f5ba023c1b60258ac): Bind for 0.0.0.0:80 failed: port is already allocated.
+[ec2-user@ip-172-31-6-132 ~]$ docker network disconnect my_network <container_id>^C
+
+[ec2-user@ip-172-31-6-132 ~]$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                  PORTS                               NAMES
+30d189b75058   nginx         "/docker-entrypoint.…"   34 seconds ago   Created                                                     sweet_davinci
+6b457ccb0b72   nginx         "/docker-entrypoint.…"   5 minutes ago    Up 5 minutes            0.0.0.0:80->80/tcp, :::80->80/tcp   dazzling_snyder
+328b99fc70e4   my-app-node   "docker-entrypoint.s…"   2 days ago       Exited (1) 2 days ago                                       my-running-app
+9f9f7965df02   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                                       exciting_hamilton
+0f4feefefd0a   hello-world   "/hello"                 2 days ago       Exited (0) 2 days ago                                       crazy_greider
+[ec2-user@ip-172-31-6-132 ~]$ docker network inspect my_network | grep 6b457ccb0b7293fe08763a28d8a39b59b4180da1ac64a6365b9335ad924ff712^C
+[ec2-user@ip-172-31-6-132 ~]$ docker network disconnect my_network 6b457ccb0b72
+[ec2-user@ip-172-31-6-132 ~]$ docker network inspect my_network
+[
+    {
+        "Name": "my_network",
+        "Id": "756f526f87157c8cd72a34725b15672f4b9ebe55c6f41392c1014bffb76eb80d",
+        "Created": "2024-08-22T13:55:28.354943479Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+[ec2-user@ip-172-31-6-132 ~]$ 
