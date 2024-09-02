@@ -1,0 +1,317 @@
+[ec2-user@ip-172-31-6-132 Docker]$ docker volume create my_volume
+my_volume
+[ec2-user@ip-172-31-6-132 Docker]$ docker volume ls
+DRIVER    VOLUME NAME
+local     my_volume
+[ec2-user@ip-172-31-6-132 Docker]$ docker volume inspect my_volume
+[
+    {
+        "CreatedAt": "2024-09-02T05:39:42Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/my_volume/_data",
+        "Name": "my_volume",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+[ec2-user@ip-172-31-6-132 Docker]$ docker volume rm my_volume
+my_volume
+[ec2-user@ip-172-31-6-132 Docker]$ docker volume ls
+DRIVER    VOLUME NAME
+[ec2-user@ip-172-31-6-132 Docker]$ docker network ls
+NETWORK ID     NAME                   DRIVER    SCOPE
+319ff7eca0ab   bridge                 bridge    local
+873bb460b1fa   host                   host      local
+756f526f8715   my_network             bridge    local
+788cb3b43f7f   nginx-docker_default   bridge    local
+0e70fa0f40a5   none                   null      local
+[ec2-user@ip-172-31-6-132 Docker]$ docker network create my_network
+Error response from daemon: network with name my_network already exists
+[ec2-user@ip-172-31-6-132 Docker]$ docker network create my_network1
+d0848e53ec2222bf93ed3dd7c3d6e5678fdf3c576f0abadc3fc29d0a9e6a3bd5
+[ec2-user@ip-172-31-6-132 Docker]$ docker network inspect my_network1
+[
+    {
+        "Name": "my_network1",
+        "Id": "d0848e53ec2222bf93ed3dd7c3d6e5678fdf3c576f0abadc3fc29d0a9e6a3bd5",
+        "Created": "2024-09-02T05:42:43.127134739Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.20.0.0/16",
+                    "Gateway": "172.20.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+[ec2-user@ip-172-31-6-132 Docker]$ docker network ls
+NETWORK ID     NAME                   DRIVER    SCOPE
+319ff7eca0ab   bridge                 bridge    local
+873bb460b1fa   host                   host      local
+756f526f8715   my_network             bridge    local
+d0848e53ec22   my_network1            bridge    local
+788cb3b43f7f   nginx-docker_default   bridge    local
+0e70fa0f40a5   none                   null      local
+[ec2-user@ip-172-31-6-132 Docker]$ docker -s
+unknown shorthand flag: 's' in -s
+See 'docker --help'.
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Log in to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx (Docker Inc., v0.0.0+unknown)
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Global Options:
+      --config string      Location of client config files (default "/home/ec2-user/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info", "warn", "error", "fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/home/ec2-user/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/home/ec2-user/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/home/ec2-user/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED       STATUS                   PORTS     NAMES
+c5782b421a29   revathitadela1/custom-nginx:latest   "/docker-entrypoint.…"   10 days ago   Exited (0) 10 days ago             nginx-docker-nginx-1
+30d189b75058   nginx                                "/docker-entrypoint.…"   10 days ago   Created                            sweet_davinci
+6b457ccb0b72   nginx                                "/docker-entrypoint.…"   10 days ago   Exited (0) 10 days ago             dazzling_snyder
+328b99fc70e4   my-app-node                          "docker-entrypoint.s…"   13 days ago   Exited (1) 13 days ago             my-running-app
+9f9f7965df02   hello-world                          "/hello"                 13 days ago   Exited (0) 13 days ago             exciting_hamilton
+0f4feefefd0a   hello-world                          "/hello"                 13 days ago   Exited (0) 13 days ago             crazy_greider
+[ec2-user@ip-172-31-6-132 Docker]$ docker network connect my_network c5782b421a29
+[ec2-user@ip-172-31-6-132 Docker]$ docker network ls
+NETWORK ID     NAME                   DRIVER    SCOPE
+319ff7eca0ab   bridge                 bridge    local
+873bb460b1fa   host                   host      local
+756f526f8715   my_network             bridge    local
+d0848e53ec22   my_network1            bridge    local
+788cb3b43f7f   nginx-docker_default   bridge    local
+0e70fa0f40a5   none                   null      local
+[ec2-user@ip-172-31-6-132 Docker]$ docker network ls
+NETWORK ID     NAME                   DRIVER    SCOPE
+319ff7eca0ab   bridge                 bridge    local
+873bb460b1fa   host                   host      local
+756f526f8715   my_network             bridge    local
+d0848e53ec22   my_network1            bridge    local
+788cb3b43f7f   nginx-docker_default   bridge    local
+0e70fa0f40a5   none                   null      local
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED       STATUS                   PORTS     NAMES
+c5782b421a29   revathitadela1/custom-nginx:latest   "/docker-entrypoint.…"   10 days ago   Exited (0) 10 days ago             nginx-docker-nginx-1
+30d189b75058   nginx                                "/docker-entrypoint.…"   10 days ago   Created                            sweet_davinci
+6b457ccb0b72   nginx                                "/docker-entrypoint.…"   10 days ago   Exited (0) 10 days ago             dazzling_snyder
+328b99fc70e4   my-app-node                          "docker-entrypoint.s…"   13 days ago   Exited (1) 13 days ago             my-running-app
+9f9f7965df02   hello-world                          "/hello"                 13 days ago   Exited (0) 13 days ago             exciting_hamilton
+0f4feefefd0a   hello-world                          "/hello"                 13 days ago   Exited (0) 13 days ago             crazy_greider
+[ec2-user@ip-172-31-6-132 Docker]$ docker run -d -p 80:80 nginx
+4d1fb1d544d01b7651e373067579676be0e0b0dd41a1438cf3fa556a2468c1a0
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED          STATUS                   PORTS                               NAMES
+4d1fb1d544d0   nginx                                "/docker-entrypoint.…"   24 seconds ago   Up 24 seconds            0.0.0.0:80->80/tcp, :::80->80/tcp   zealous_bassi
+c5782b421a29   revathitadela1/custom-nginx:latest   "/docker-entrypoint.…"   10 days ago      Exited (0) 10 days ago                                       nginx-docker-nginx-1
+30d189b75058   nginx                                "/docker-entrypoint.…"   10 days ago      Created                                                      sweet_davinci
+6b457ccb0b72   nginx                                "/docker-entrypoint.…"   10 days ago      Exited (0) 10 days ago                                       dazzling_snyder
+328b99fc70e4   my-app-node                          "docker-entrypoint.s…"   13 days ago      Exited (1) 13 days ago                                       my-running-app
+9f9f7965df02   hello-world                          "/hello"                 13 days ago      Exited (0) 13 days ago                                       exciting_hamilton
+0f4feefefd0a   hello-world                          "/hello"                 13 days ago      Exited (0) 13 days ago                                       crazy_greider
+[ec2-user@ip-172-31-6-132 Docker]$ docker network connect my_network1 4d1fb1d544d0
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED              STATUS                   PORTS                               NAMES
+4d1fb1d544d0   nginx                                "/docker-entrypoint.…"   About a minute ago   Up About a minute        0.0.0.0:80->80/tcp, :::80->80/tcp   zealous_bassi
+c5782b421a29   revathitadela1/custom-nginx:latest   "/docker-entrypoint.…"   10 days ago          Exited (0) 10 days ago                                       nginx-docker-nginx-1
+30d189b75058   nginx                                "/docker-entrypoint.…"   10 days ago          Created                                                      sweet_davinci
+6b457ccb0b72   nginx                                "/docker-entrypoint.…"   10 days ago          Exited (0) 10 days ago                                       dazzling_snyder
+328b99fc70e4   my-app-node                          "docker-entrypoint.s…"   13 days ago          Exited (1) 13 days ago                                       my-running-app
+9f9f7965df02   hello-world                          "/hello"                 13 days ago          Exited (0) 13 days ago                                       exciting_hamilton
+0f4feefefd0a   hello-world                          "/hello"                 13 days ago          Exited (0) 13 days ago                                       crazy_greider
+[ec2-user@ip-172-31-6-132 Docker]$ docker network ps
+
+Usage:  docker network COMMAND
+
+Manage networks
+
+Commands:
+  connect     Connect a container to a network
+  create      Create a network
+  disconnect  Disconnect a container from a network
+  inspect     Display detailed information on one or more networks
+  ls          List networks
+  prune       Remove all unused networks
+  rm          Remove one or more networks
+
+Run 'docker network COMMAND --help' for more information on a command.
+[ec2-user@ip-172-31-6-132 Docker]$ docker network ls
+NETWORK ID     NAME                   DRIVER    SCOPE
+319ff7eca0ab   bridge                 bridge    local
+873bb460b1fa   host                   host      local
+756f526f8715   my_network             bridge    local
+d0848e53ec22   my_network1            bridge    local
+788cb3b43f7f   nginx-docker_default   bridge    local
+0e70fa0f40a5   none                   null      local
+[ec2-user@ip-172-31-6-132 Docker]$ docker network inspect my_network1
+[
+    {
+        "Name": "my_network1",
+        "Id": "d0848e53ec2222bf93ed3dd7c3d6e5678fdf3c576f0abadc3fc29d0a9e6a3bd5",
+        "Created": "2024-09-02T05:42:43.127134739Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.20.0.0/16",
+                    "Gateway": "172.20.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "4d1fb1d544d01b7651e373067579676be0e0b0dd41a1438cf3fa556a2468c1a0": {
+                "Name": "zealous_bassi",
+                "EndpointID": "197410dac631d3d0b6a659ce603eb0a3d787cdd86a75a16549bf5ab1bfd43091",
+                "MacAddress": "02:42:ac:14:00:02",
+                "IPv4Address": "172.20.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a | grep docker network inspect my_network
+grep: network: No such file or directory
+grep: inspect: No such file or directory
+grep: my_network: No such file or directory
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a | grep zealous_bassi
+4d1fb1d544d0   nginx                                "/docker-entrypoint.…"   4 minutes ago   Up 4 minutes             0.0.0.0:80->80/tcp, :::80->80/tcp   zealous_bassi
+[ec2-user@ip-172-31-6-132 Docker]$ docker network disconnect my_network1 4d1fb1d544d0
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a | grep zealous_bassi
+4d1fb1d544d0   nginx                                "/docker-entrypoint.…"   6 minutes ago   Up 6 minutes             0.0.0.0:80->80/tcp, :::80->80/tcp   zealous_bassi
+[ec2-user@ip-172-31-6-132 Docker]$ docker network inspect my_network1
+[
+    {
+        "Name": "my_network1",
+        "Id": "d0848e53ec2222bf93ed3dd7c3d6e5678fdf3c576f0abadc3fc29d0a9e6a3bd5",
+        "Created": "2024-09-02T05:42:43.127134739Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.20.0.0/16",
+                    "Gateway": "172.20.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+[ec2-user@ip-172-31-6-132 Docker]$ ^C
+[ec2-user@ip-172-31-6-132 Docker]$ 

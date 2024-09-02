@@ -1,0 +1,91 @@
+[ec2-user@ip-172-31-6-132 Docker]$ docker -v
+Docker version 25.0.3, build 4debf41
+[ec2-user@ip-172-31-6-132 Docker]$ docker images
+REPOSITORY                          TAG       IMAGE ID       CREATED         SIZE
+revathitadela1/custom-nginx         latest    b89278c99765   10 days ago     188MB
+revathitadela1/hello-world-docker   latest    9517fcc5311a   11 days ago     13.1MB
+tadelarevathi1/hello-world          latest    9517fcc5311a   11 days ago     13.1MB
+my-app-node                         latest    d968d4e8be31   13 days ago     912MB
+tadelarevathi1/my-app-node          latest    d968d4e8be31   13 days ago     912MB
+nginx                               latest    5ef79149e0ec   2 weeks ago     188MB
+hello-world                         latest    d2c94e258dcb   16 months ago   13.3kB
+[ec2-user@ip-172-31-6-132 Docker]$ docker remove nginx
+Error response from daemon: No such container: nginx
+[ec2-user@ip-172-31-6-132 Docker]$ docker remove 5ef79149e0ec
+Error response from daemon: No such container: 5ef79149e0ec
+[ec2-user@ip-172-31-6-132 Docker]$ docker pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+Digest: sha256:447a8665cc1dab95b1ca778e162215839ccbb9189104c79d7ec3a81e14577add
+Status: Image is up to date for nginx:latest
+docker.io/library/nginx:latest
+[ec2-user@ip-172-31-6-132 Docker]$ docker rmi 5ef79149e0ec
+Error response from daemon: conflict: unable to delete 5ef79149e0ec (must be forced) - image is being used by stopped container 30d189b75058
+[ec2-user@ip-172-31-6-132 Docker]$ 
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps =a
+"docker ps" accepts no arguments.
+See 'docker ps --help'.
+
+Usage:  docker ps [OPTIONS]
+
+List containers
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED       STATUS                   PORTS     NAMES
+c5782b421a29   revathitadela1/custom-nginx:latest   "/docker-entrypoint.…"   10 days ago   Exited (0) 10 days ago             nginx-docker-nginx-1
+30d189b75058   nginx                                "/docker-entrypoint.…"   10 days ago   Created                            sweet_davinci
+6b457ccb0b72   nginx                                "/docker-entrypoint.…"   10 days ago   Exited (0) 10 days ago             dazzling_snyder
+328b99fc70e4   my-app-node                          "docker-entrypoint.s…"   13 days ago   Exited (1) 13 days ago             my-running-app
+9f9f7965df02   hello-world                          "/hello"                 13 days ago   Exited (0) 13 days ago             exciting_hamilton
+0f4feefefd0a   hello-world                          "/hello"                 13 days ago   Exited (0) 13 days ago             crazy_greider
+[ec2-user@ip-172-31-6-132 Docker]$ docker run -d -p 80:80 nginx
+e27bf802470799892074dd0ac7ad9d65de7af600111db619e6e2ca711071d50d
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED         STATUS                   PORTS                               NAMES
+e27bf8024707   nginx                                "/docker-entrypoint.…"   8 seconds ago   Up 7 seconds             0.0.0.0:80->80/tcp, :::80->80/tcp   agitated_turing
+c5782b421a29   revathitadela1/custom-nginx:latest   "/docker-entrypoint.…"   10 days ago     Exited (0) 10 days ago                                       nginx-docker-nginx-1
+30d189b75058   nginx                                "/docker-entrypoint.…"   10 days ago     Created                                                      sweet_davinci
+6b457ccb0b72   nginx                                "/docker-entrypoint.…"   10 days ago     Exited (0) 10 days ago                                       dazzling_snyder
+328b99fc70e4   my-app-node                          "docker-entrypoint.s…"   13 days ago     Exited (1) 13 days ago                                       my-running-app
+9f9f7965df02   hello-world                          "/hello"                 13 days ago     Exited (0) 13 days ago                                       exciting_hamilton
+0f4feefefd0a   hello-world                          "/hello"                 13 days ago     Exited (0) 13 days ago                                       crazy_greider
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED          STATUS                   PORTS                               NAMES
+e27bf8024707   nginx                                "/docker-entrypoint.…"   32 seconds ago   Up 30 seconds            0.0.0.0:80->80/tcp, :::80->80/tcp   agitated_turing
+c5782b421a29   revathitadela1/custom-nginx:latest   "/docker-entrypoint.…"   10 days ago      Exited (0) 10 days ago                                       nginx-docker-nginx-1
+30d189b75058   nginx                                "/docker-entrypoint.…"   10 days ago      Created                                                      sweet_davinci
+6b457ccb0b72   nginx                                "/docker-entrypoint.…"   10 days ago      Exited (0) 10 days ago                                       dazzling_snyder
+328b99fc70e4   my-app-node                          "docker-entrypoint.s…"   13 days ago      Exited (1) 13 days ago                                       my-running-app
+9f9f7965df02   hello-world                          "/hello"                 13 days ago      Exited (0) 13 days ago                                       exciting_hamilton
+0f4feefefd0a   hello-world                          "/hello"                 13 days ago      Exited (0) 13 days ago                                       crazy_greider
+[ec2-user@ip-172-31-6-132 Docker]$ docker stop e27bf8024707
+e27bf8024707
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED              STATUS                     PORTS     NAMES
+e27bf8024707   nginx                                "/docker-entrypoint.…"   About a minute ago   Exited (0) 3 seconds ago             agitated_turing
+c5782b421a29   revathitadela1/custom-nginx:latest   "/docker-entrypoint.…"   10 days ago          Exited (0) 10 days ago               nginx-docker-nginx-1
+30d189b75058   nginx                                "/docker-entrypoint.…"   10 days ago          Created                              sweet_davinci
+6b457ccb0b72   nginx                                "/docker-entrypoint.…"   10 days ago          Exited (0) 10 days ago               dazzling_snyder
+328b99fc70e4   my-app-node                          "docker-entrypoint.s…"   13 days ago          Exited (1) 13 days ago               my-running-app
+9f9f7965df02   hello-world                          "/hello"                 13 days ago          Exited (0) 13 days ago               exciting_hamilton
+0f4feefefd0a   hello-world                          "/hello"                 13 days ago          Exited (0) 13 days ago               crazy_greider
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED         STATUS                     PORTS     NAMES
+e27bf8024707   nginx                                "/docker-entrypoint.…"   2 minutes ago   Exited (0) 8 seconds ago             agitated_turing
+c5782b421a29   revathitadela1/custom-nginx:latest   "/docker-entrypoint.…"   10 days ago     Exited (0) 10 days ago               nginx-docker-nginx-1
+30d189b75058   nginx                                "/docker-entrypoint.…"   10 days ago     Created                              sweet_davinci
+6b457ccb0b72   nginx                                "/docker-entrypoint.…"   10 days ago     Exited (0) 10 days ago               dazzling_snyder
+328b99fc70e4   my-app-node                          "docker-entrypoint.s…"   13 days ago     Exited (1) 13 days ago               my-running-app
+9f9f7965df02   hello-world                          "/hello"                 13 days ago     Exited (0) 13 days ago               exciting_hamilton
+0f4feefefd0a   hello-world                          "/hello"                 13 days ago     Exited (0) 13 days ago               crazy_greider
+[ec2-user@ip-172-31-6-132 Docker]$ docker rm e27bf8024707
+e27bf8024707
+[ec2-user@ip-172-31-6-132 Docker]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED       STATUS                   PORTS     NAMES
+c5782b421a29   revathitadela1/custom-nginx:latest   "/docker-entrypoint.…"   10 days ago   Exited (0) 10 days ago             nginx-docker-nginx-1
+30d189b75058   nginx                                "/docker-entrypoint.…"   10 days ago   Created                            sweet_davinci
+6b457ccb0b72   nginx                                "/docker-entrypoint.…"   10 days ago   Exited (0) 10 days ago             dazzling_snyder
+328b99fc70e4   my-app-node                          "docker-entrypoint.s…"   13 days ago   Exited (1) 13 days ago             my-running-app
+9f9f7965df02   hello-world                          "/hello"                 13 days ago   Exited (0) 13 days ago             exciting_hamilton
+0f4feefefd0a   hello-world                          "/hello"                 13 days ago   Exited (0) 13 days ago             crazy_greider
